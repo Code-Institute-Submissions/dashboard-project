@@ -5,12 +5,24 @@ queue()
 function makeGraphs(error, dragonballzData) {
     var ndx = crossfilter(dragonballzData);
     
-    show_gender_balance(ndx);
+    show_graph_selector(ndx);
+    show_gender_graph(ndx);
     
     dc.renderAll();
 }
 
-function show_gender_balance(ndx) {
+
+function show_graph_selector(ndx) {
+    dim = ndx.dimension(dc.pluck('favourite.show'))
+    group = dim.group()
+    
+    dc.selectMenu("#graph-selector")
+        .dimension(dim)
+        .group(group);
+    
+}
+
+function show_gender_graph(ndx) {
     var dim = ndx.dimension(dc.pluck('sex'));
     var group = dim.group();
     
@@ -23,7 +35,6 @@ function show_gender_balance(ndx) {
         .transitionDuration(500)
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
-        .elasticY(true)
         .xAxisLabel("Gender")
         .yAxis().ticks(20);
 }
