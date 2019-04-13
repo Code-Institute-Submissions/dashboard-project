@@ -7,6 +7,7 @@ function makeGraphs(error, dragonballzData) {
     
     dragonballzData.forEach(function(d){
         d.age = parseInt(d.age);
+        d.yrs_watching = parseInt(d["yrs.watching"])
     })
     
    
@@ -14,7 +15,9 @@ function makeGraphs(error, dragonballzData) {
     show_graph_selector(ndx);
     show_gender_graph(ndx);
     show_average_age(ndx);
-    show_show_distribution(ndx)
+    
+    show_yrs_watching_to_favourite_show_correlation(ndx);
+    
     
     dc.renderAll();
 }
@@ -91,7 +94,50 @@ function show_average_age(ndx) {
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Gender")
         .yAxis().ticks(4);   
+        
+}        
+
+function show_yrs_watching_to_favourite_show_correlation(ndx) {
+    
+    var genderColors = d3.scale.ordinal()
+        .domain(["Female", "Male"])
+        .range(["orange", "blue"])
+        
+        
+    var yrsDim = ndx.dimension(dc.pluck("yrs_watching"));
+    var experienceDim = ndx.dimension(function(d) {
+        return [d.yrs_watching, d.age, d.sex];
+    });
+    var watchingshowGroup = experienceDim.group();
+
+    var minEx = yrsDim.bottom(1)[0].yrs_watching;
+    var maxEx = yrsDim.top(1)[0].yrs_watching;
+    var dim = ndx.dimension(dc.pluck('sex'));
+
+    dc.scatterPlot("#yrs-watching-favourite-show")
+        .width(800)
+        .height(400)
+        .x(d3.scale.linear().domain([minEx, maxEx]))
+        .brushOn(false)
+        .symbolSize(8)
+        .clipPadding(10)
+        .yAxisLabel("Age of Person")
+        .xAxisLabel("Years Of Watching The Franchise")
+        .title(function(d) {
+            return d.key[1] + " Years old, " +  d.key[0] + " Years Watching ";
+        })
+        .colorAccessor(function(d) {
+            return d.key[2]
+        })
+        .colors(genderColors)
+        .dimension(experienceDim)
+        .group(watchingshowGroup)
+        .margins({top: 10, right: 50, bottom: 75, left: 75});
 }
+
+
+
+
 
 
 
