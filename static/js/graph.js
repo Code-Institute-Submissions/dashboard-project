@@ -8,6 +8,7 @@ function makeGraphs(error, dragonballzData) {
     dragonballzData.forEach(function(d){
         d.age = parseInt(d.age);
         d.yrs_watching = parseInt(d["yrs.watching"])
+        
     })
     
    
@@ -17,6 +18,8 @@ function makeGraphs(error, dragonballzData) {
     show_average_age(ndx);
     
     show_yrs_watching_to_favourite_show_correlation(ndx);
+    
+    show_pie_chart_of_series(ndx);
     
     
     dc.renderAll();
@@ -34,6 +37,7 @@ function show_graph_selector(ndx) {
 }
 
 function show_gender_graph(ndx) {
+    
     var dim = ndx.dimension(dc.pluck('sex'));
     var group = dim.group();
     
@@ -53,6 +57,11 @@ function show_gender_graph(ndx) {
 
 
 function show_average_age(ndx) {
+    
+    var genderColors = d3.scale.ordinal()
+        .domain(["Female", "Male"])
+        .range(["orange", "blue"])
+        
     var dim = ndx.dimension(dc.pluck('sex'));
     
     function add_item(p, v) {
@@ -135,7 +144,25 @@ function show_yrs_watching_to_favourite_show_correlation(ndx) {
         .margins({top: 10, right: 50, bottom: 75, left: 75});
 }
 
-
+function show_pie_chart_of_series(ndx) {
+    
+    var genderColors = d3.scale.ordinal()
+        .domain(["Female", "Male"])
+        .range(["orange", "blue"])
+        
+    var pdim = ndx.dimension(dc.pluck('sex'));
+    var pgroup = pdim.group();
+    
+    
+    dc.pieChart("#pie-chart-of-series")
+        .height(330)
+        .radius(90)
+        .transitionDuration(500)
+        .colors(genderColors)
+        .dimension(pdim)
+        .group(pgroup);
+    
+}
 
 
 
