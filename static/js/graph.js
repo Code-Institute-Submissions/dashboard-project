@@ -7,6 +7,7 @@ function makeGraphs(error, dragonballzData) {
     
     dragonballzData.forEach(function(d){
         d.age = parseInt(d.age);
+        d.fav_show = parseInt(d["favourite.show"])
         d.yrs_watching = parseInt(d["yrs.watching"])
         
     })
@@ -50,6 +51,7 @@ function show_gender_graph(ndx) {
         .transitionDuration(500)
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
+        .yAxisLabel("Number Of People")
         .xAxisLabel("Gender")
         .yAxis().ticks(20);
 }
@@ -101,6 +103,7 @@ function show_average_age(ndx) {
         .transitionDuration(500)
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
+        .yAxisLabel("Average Age Per Show")
         .xAxisLabel("Gender")
         .yAxis().ticks(4);   
         
@@ -144,11 +147,15 @@ function show_yrs_watching_to_favourite_show_correlation(ndx) {
         .margins({top: 10, right: 50, bottom: 75, left: 75});
 }
 
+
+
+
+
 function show_pie_chart_of_series(ndx) {
-    
+
     var genderColors = d3.scale.ordinal()
         .domain(["Female", "Male"])
-        .range(["orange", "blue"])
+        .range(["blue", "orange"])
         
     var pdim = ndx.dimension(dc.pluck('sex'));
     var pgroup = pdim.group();

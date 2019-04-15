@@ -1,0 +1,38 @@
+.callout-container{
+	height: 100vh;
+	
+	background: url("../images/Dragon_Ball_Z_Logo.png") no-repeat bottom right fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+	
+}
+
+
+
+
+
+.section-heading, #graph-selector {
+	display: inline-block;	
+	float: none;
+	margin: 25px;
+	color: #2c3e50;
+}
+#graph-selector {
+    margin-left: 15px;
+}
+
+.section {
+	border-bottom: 1px solid #e6e6e6;
+	padding: 30px 0;
+}
+
+.paragraph-line {
+	line-height: 1.2;
+	color: #2c3e50;
+}
+.bar-chart {
+    margin-bottom: 40px;
+}
