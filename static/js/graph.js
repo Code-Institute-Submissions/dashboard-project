@@ -165,6 +165,9 @@ function show_pie_chart_of_series(ndx) {
         .height(330)
         .radius(90)
         .transitionDuration(500)
+        .colorAccessor(function(d) {
+            return d.key[2]
+        })
         .colors(genderColors)
         .dimension(pdim)
         .group(pgroup);
