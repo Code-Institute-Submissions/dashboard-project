@@ -37,12 +37,14 @@ Another feature i would like to implement would be a stacked bar chart with all 
 
 Bootswatch website: https://bootswatch.com/flatly/ i downloaded the theme flatly to automatically style my website. It is helping me add the font of the text that i like without specifying it in the style.css section.
 
-dc.js: I used this to render charts in CSS-friendly SVG format. The charts i created are rendered using dc.js and are reactive which provides an instant feedback to what the user is interacting with. dc.js a wonderful javascript library to see your data come to life not
+dc.js: https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.js. and https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css. I used this to render charts in CSS-friendly SVG format. The charts i created are rendered using dc.js and are reactive which provides an instant feedback to what the user is interacting with. dc.js a wonderful javascript library to see your data come to life not
 just in the web browser but on mobile devices also.
 
-crossfilters: I used Crossfilter alongside dc.js because it allowed me to filter and group specific data on the go, it goes well alongside dc.js which has been used to build this dashboard. You can see this by clicking on many different charts and using the filter at the top.
+crossfilters: https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js. I used Crossfilter alongside dc.js because it allowed me to filter and group specific data on the go, it goes well alongside dc.js which has been used to build this dashboard. You can see this by clicking on many different charts and using the filter at the top.
 
-d3.js: I used this to help bring my dashboard to life by using html and css.
+d3.js: https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js. I used this to help bring my dashboard to life by using html and css.
+
+queue.min.js: https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js. This was used help me run load multiple files before running the remaining code.
 
 I have got friends and family to test out various issues with the data dashboard, for instance, different types of web browsers were used from firefox, google chrome and microsoft edge. 
 
